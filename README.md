@@ -1,6 +1,12 @@
-Welcome to the official Rust-based implementation of the **Sydar Layer 1 Protocol**. sydar is a high-performance, Decentralized Web Node (DWN) integrated, Proof-of-Work (PoW) DAG network.
+## About us
 
-This repository contains the full-node software, designed for maximum throughput, low latency, and native Web5 sovereign identity integration. Built from the ground up in Rust, this node is optimized for the **sydar Consensus**—delivering extreme scalability without sacrificing decentralization.
+Sydar — a sovereign digital money designed as a resilient, auditable, and highly accessible settlement layer.  Sydar is a peer-to-peer monetary system built to enable trust-minimized value transfer at global scale while preserving simplicity, predictability, and broad participation. While avoiding the severe state-bloat of general-purpose Turing-complete smart contracts, the protocol focuses on secure, low-friction digital money coupled with native Web5 Decentralized Identity (DID) primitives.
+
+ Sydar is implemented on  SydarDAG, a directed acyclic graph (DAG) data structure that permits parallel block creation by independent miners. Unlike traditional single-chain blockchains that discard concurrent blocks as orphans,  SydarDAG embraces them: every valid block contributes to the ledger, and the  Sydar Consensus protocol produces a single deterministic total ordering of all transactions.
+
+This eliminates the wasted-hash problem that plagues single-chain designs. The network is secured by  SydarX — an application-layer Proof-of-Work combining Blake3 (super-speed hashing) with an 8-stage XOR memory loop requiring 16 MB of random-access memory per hash operation. This architecture makes  SydarX genuinely memory-hard, compressing the performance gap between ASICs and general-purpose hardware (GPUs, CPUs), ensuring mining remains accessible to a broad population of participants.
+
+ Sydar operates on a hybrid Account + Object state model. Rather than tracking individual unspent outputs (UTXOs), the protocol maintains per-address balances and nonces. Each transaction atomically deducts from the sender and credits the receiver, with balance finality enforced at the block confirmation boundary. This model delivers account + object based ergonomics with the security of Proof-of-Work.
 
 ## Key Features
  * **High Throughput:** Engineered to handle up to 10,000+ TPS.
