@@ -1,0 +1,73 @@
+[package]
+name = "sydard"
+description = "sydar full node daemon"
+keywords = ["csm", "sydardag"]
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+name = "sydard_lib"
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+sydar-alloc.workspace = true # This changes the global allocator for all of the next dependencies so should be kept first
+
+sydar-addresses.workspace = true
+sydar-addressmanager.workspace = true
+sydar-consensus-core.workspace = true
+sydar-consensus-notify.workspace = true
+sydar-consensus.workspace = true
+sydar-consensusmanager.workspace = true
+sydar-core.workspace = true
+sydar-database.workspace = true
+sydar-grpc-server.workspace = true
+sydar-hashes.workspace = true
+sydar-index-processor.workspace = true
+sydar-mining.workspace = true
+sydar-notify.workspace = true
+sydar-p2p-flows.workspace = true
+sydar-p2p-lib.workspace = true
+sydar-p2p-mining.workspace = true
+sydar-perf-monitor.workspace = true
+sydar-rpc-core.workspace = true
+sydar-rpc-service.workspace = true
+sydar-txscript.workspace = true
+sydar-utils.workspace = true
+sydar-utils-tower.workspace = true
+sydar-utxoindex.workspace = true
+sydar-wrpc-server.workspace = true
+
+async-channel.workspace = true
+cfg-if.workspace = true
+clap = { workspace = true, features = ["env"]}
+dhat = { workspace = true, optional = true }
+dirs.workspace = true
+futures-util.workspace = true
+itertools.workspace = true
+log.workspace = true
+num_cpus.workspace = true
+rand.workspace = true
+rayon.workspace = true
+rocksdb.workspace = true
+serde.workspace = true
+tempfile.workspace = true
+thiserror.workspace = true
+tokio = { workspace = true, features = ["rt", "macros", "rt-multi-thread"] }
+workflow-log.workspace = true
+serde_json.workspace = true
+
+toml = "0.8.10"
+serde_with = "3.7.0"
+
+[features]
+heap = ["dhat", "sydar-alloc/heap"]
+devnet-prealloc = ["sydar-consensus/devnet-prealloc"]
+semaphore-trace = ["sydar-utils/semaphore-trace"]
+
+[lints]
+workspace = true

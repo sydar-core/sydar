@@ -1,0 +1,43 @@
+[package]
+name = "sydar-p2p-flows"
+description = "sydar p2p flows"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sydar-core.workspace = true
+sydar-consensus-core.workspace = true
+sydar-consensus-notify.workspace = true
+sydar-p2p-lib.workspace = true
+sydar-p2p-mining.workspace = true
+sydar-utils.workspace = true
+sydar-utils-tower.workspace = true
+sydar-hashes.workspace = true
+sydar-muhash.workspace = true
+sydar-connectionmanager.workspace = true
+sydar-addressmanager.workspace = true
+sydar-consensusmanager.workspace = true
+sydar-mining.workspace = true
+sydar-notify.workspace = true
+
+async-trait.workspace = true
+futures = { workspace = true, features = ["alloc"] }
+indexmap.workspace = true
+itertools.workspace = true
+log.workspace = true
+parking_lot.workspace = true
+rand.workspace = true
+thiserror.workspace = true
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "signal"] }
+tokio-stream = { workspace = true, features = ["net"] }
+uuid = { workspace = true, features = ["v4", "fast-rng"] }
+chrono.workspace = true
+sydar-addresses.workspace = true
+
+[lints]
+workspace = true

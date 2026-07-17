@@ -1,0 +1,63 @@
+[package]
+name = "sydar-consensus-core"
+description = "sydar consensus core"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[features]
+devnet-prealloc = []
+wasm32-sdk = []
+default = []
+zkp = ["sydar-plonky3"]
+
+[dependencies]
+arc-swap.workspace = true
+async-trait.workspace = true
+borsh.workspace = true
+bitflags.workspace = true
+cfg-if.workspace = true
+faster-hex.workspace = true
+futures-util.workspace = true
+getrandom.workspace = true
+itertools.workspace = true
+js-sys.workspace = true
+sydar-addresses.workspace = true
+sydar-core.workspace = true
+sydar-hashes.workspace = true
+sydar-math.workspace = true
+sydar-merkle.workspace = true
+sydar-muhash.workspace = true
+sydar-txscript-errors.workspace = true
+sydar-utils.workspace = true
+rand.workspace = true
+sydar-dilithium.workspace = true
+sydar-plonky3 = { path = "../../crypto/plonky3", optional = true }
+sha2.workspace = true
+serde_json.workspace = true
+serde-wasm-bindgen.workspace = true
+serde.workspace = true
+smallvec.workspace = true
+thiserror.workspace = true
+wasm-bindgen.workspace = true
+workflow-core.workspace = true
+workflow-log.workspace = true
+workflow-serializer.workspace = true
+workflow-wasm.workspace = true
+
+[dev-dependencies]
+criterion.workspace = true
+bincode.workspace = true
+wasm-bindgen-test.workspace = true
+web-sys.workspace = true
+
+[[bench]]
+name = "serde_benchmark"
+harness = false
+
+[lints]
+workspace = true

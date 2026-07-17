@@ -1,0 +1,16 @@
+[package]
+name = "sydar-merkle"
+description = "sydar merkle tree library"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sydar-hashes.workspace = true
+
+[lints]
+workspace = true

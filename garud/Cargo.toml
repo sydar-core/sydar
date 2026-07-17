@@ -1,0 +1,41 @@
+[package]
+name = "garud"
+description = "sydar Transaction Generator"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sydar-addresses.workspace = true
+sydar-consensus-core.workspace = true
+sydar-core.workspace = true
+sydar-grpc-client.workspace = true
+sydar-notify.workspace = true
+sydar-rpc-core.workspace = true
+sydar-txscript.workspace = true
+sydar-utils.workspace = true
+sydar-dilithium.workspace = true
+sha2.workspace = true
+async-channel.workspace = true
+clap.workspace = true
+faster-hex.workspace = true
+itertools.workspace = true
+log.workspace = true
+parking_lot.workspace = true
+rand.workspace = true
+rayon.workspace = true
+tokio = { workspace = true, features = ["rt", "macros", "rt-multi-thread"] }
+
+[dev-dependencies]
+criterion.workspace = true
+
+[[bench]]
+name = "bench"
+harness = false
+
+[lints]
+workspace = true

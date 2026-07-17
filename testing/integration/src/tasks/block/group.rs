@@ -1,0 +1,71 @@
+use crate::{
+    common::daemon::ClientManager,
+    tasks::{
+        Stopper, Task,
+        block::{miner::BlockMinerTask, submitter::BlockSubmitterTask, template_receiver::BlockTemplateReceiverTask},
+    },
+};
+use async_trait::async_trait;
+use itertools::chain;
+use sydar_addresses::Address;
+use sydar_consensus_core::network::NetworkId;
+use sydar_core::debug;
+use sydar_utils::triggers::SingleTrigger;
+use sha2::Digest;
+use std::sync::Arc;
+use tokio::task::JoinHandle;
+
+pub struct MinerGroupTask {
+    submitter: Arc<BlockSubmitterTask>,
+    receiver: Arc<BlockTemplateReceiverTask>,
+    miner: Arc<BlockMinerTask>,
+}
+
+impl MinerGroupTask {
+    pub fn new(submitter: Arc<BlockSubmitterTask>, receiver: Arc<BlockTemplateReceiverTask>, miner: Arc<BlockMinerTask>) -> Self {
+        Self { submitter, receiver, miner }
+    }
+
+    pub async fn build(
+        network: NetworkId,
+        client_manager: Arc<ClientManager>,
+        submitter_pool_size: usize,
+        bps: u64,
+        block_count: usize,
+        stopper: Stopper,
+    ) -> Arc<Self> {
+        // Block submitter
+        let submitter = BlockSubmitterTask::build(client_manager.clone(), submitter_pool_size, stopper).await;
+
+        // Mining key and address
+        let kp = sydar_dilithium::generate_keypair().expect("generate dilithium keypair");
+        let pay_address = Address::new(
+            network.network_type().into(),
+            sydar_addresses::Version::PubKeyDilithium,
+            &sha2::Sha256::digest(kp.public_key())[0..20],
+        );
+        debug!("Generated address {}", pay_address);
+
+        // Block template receiver
+        let client = Arc::new(client_manager.new_client().await);
+        let receiver = BlockTemplateReceiverTask::build(client.clone(), pay_address.clone(), stopper).await;
+
+        // Miner
+        let miner =
+            BlockMinerTask::build(client, bps, block_count, submitter.sender(), receiver.template(), pay_address, stopper).await;
+
+        Arc::new(Self::new(submitter, receiver, miner))
+    }
+}
+
+#[async_trait]
+impl Task for MinerGroupTask {
+    fn start(&self, stop_signal: SingleTrigger) -> Vec<JoinHandle<()>> {
+        chain![
+            self.submitter.start(stop_signal.clone()),
+            self.receiver.start(stop_signal.clone()),
+            self.miner.start(stop_signal.clone())
+        ]
+        .collect()
+    }
+}

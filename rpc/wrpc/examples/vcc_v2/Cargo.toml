@@ -1,0 +1,22 @@
+[package]
+name = "sydar-wrpc-vcc-v2"
+description = "sydar VCCV2 example"
+publish = false
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+futures.workspace = true
+sydar-rpc-core.workspace = true
+sydar-wrpc-client.workspace = true
+sydar-addresses.workspace = true
+tokio.workspace = true
+
+
+[lints]
+workspace = true

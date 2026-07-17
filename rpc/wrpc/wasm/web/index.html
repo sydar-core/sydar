@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <script type="module">
+            import * as sydar from './sydar-rpc/sydar-rpc.js';
+            (async () => {
+                await sydar.default('./sydar-rpc/sydar-rpc_bg.wasm');
+                console.log(sydar.version());
+            })();
+        </script>
+    </head>
+    <body></body>
+</html>

@@ -1,0 +1,47 @@
+[package]
+name = "sydar-mining"
+description = "sydar mining"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sydar-addresses.workspace = true
+sydar-consensus-core.workspace = true
+sydar-consensusmanager.workspace = true
+sydar-core.workspace = true
+sydar-hashes.workspace = true
+sydar-mining-errors.workspace = true
+sydar-muhash.workspace = true
+sydar-txscript.workspace = true
+sydar-utils.workspace = true
+
+futures-util.workspace = true
+itertools.workspace = true
+log.workspace = true
+parking_lot.workspace = true
+rand.workspace = true
+serde.workspace = true
+smallvec.workspace = true
+sweep-bptree = "0.4.1"
+thiserror.workspace = true
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "signal"] }
+faster-hex.workspace = true
+
+[dev-dependencies]
+sydar-txscript.workspace = true
+criterion.workspace = true
+sydar-dilithium.workspace = true
+sha2.workspace = true
+
+[[bench]]
+name = "bench"
+harness = false
+
+[lints]
+workspace = true
+

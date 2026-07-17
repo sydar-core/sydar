@@ -1,0 +1,39 @@
+[package]
+name = "sydar-wrpc-server"
+description = "sydar wRPC server"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+async-trait.workspace = true
+borsh = { workspace = true, features = ["rc"] }
+futures.workspace = true
+sydar-consensus-core.workspace = true
+sydar-core.workspace = true
+sydar-grpc-client.workspace = true
+sydar-notify.workspace = true
+sydar-rpc-core.workspace = true
+sydar-rpc-macros.workspace = true
+sydar-rpc-service.workspace = true
+sydar-utils.workspace = true
+log.workspace = true
+num_cpus.workspace = true
+paste.workspace = true
+serde = { workspace = true, features = ["rc"] }
+thiserror.workspace = true
+tokio.workspace = true
+workflow-core.workspace = true
+workflow-log.workspace = true
+workflow-rpc.workspace = true
+workflow-serializer.workspace = true
+rustls.workspace = true
+[lints]
+workspace = true

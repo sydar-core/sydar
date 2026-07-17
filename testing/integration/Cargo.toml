@@ -1,0 +1,81 @@
+[package]
+name = "sydar-testing-integration"
+publish = false
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sydar-alloc.workspace = true            # This changes the global allocator for all of the next dependencies so should be kept first
+
+sydar-addresses.workspace = true
+sydar-bip32.workspace = true
+sydar-consensus-core.workspace = true
+sydar-consensus-notify.workspace = true
+sydar-consensus.workspace = true
+sydar-consensusmanager.workspace = true
+sydar-core.workspace = true
+sydar-database.workspace = true
+sydar-grpc-client.workspace = true
+sydar-grpc-core.workspace = true
+sydar-grpc-server.workspace = true
+sydar-hashes.workspace = true
+sydar-index-processor.workspace = true
+sydar-math.workspace = true
+sydar-merkle.workspace = true
+sydar-muhash.workspace = true
+sydar-notify.workspace = true
+sydar-pow.workspace = true
+sydar-rpc-core.workspace = true
+sydar-rpc-service.workspace = true
+sydar-txscript.workspace = true
+sydar-utils.workspace = true
+sydar-utxoindex.workspace = true
+sydar-wrpc-server.workspace = true
+sydard.workspace = true
+
+async-channel.workspace = true
+async-trait.workspace = true
+bincode.workspace = true
+clap.workspace = true
+chrono.workspace = true
+crossbeam-channel.workspace = true
+dhat = { workspace = true, optional = true }
+faster-hex.workspace = true
+flate2.workspace = true
+futures-util.workspace = true
+indexmap.workspace = true
+itertools.workspace = true
+log.workspace = true
+parking_lot.workspace = true
+rand_distr.workspace = true
+rand.workspace = true
+rayon.workspace = true
+rocksdb.workspace = true
+sha2.workspace = true
+sydar-dilithium.workspace = true
+serde_json.workspace = true
+serde.workspace = true
+smallvec.workspace = true
+tempfile.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+workflow-perf-monitor.workspace = true
+
+[dev-dependencies]
+criterion.workspace = true
+rand = { workspace = true, features = ["small_rng"] }
+tokio = { workspace = true, features = ["rt", "macros", "process"] }
+sydar-txscript-errors.workspace = true
+
+[features]
+heap = ["dhat"]
+html_reports = []
+devnet-prealloc = ["sydard/devnet-prealloc"]
+
+[lints]
+workspace = true

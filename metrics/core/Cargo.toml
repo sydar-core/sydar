@@ -1,0 +1,25 @@
+[package]
+name = "sydar-metrics-core"
+description = "Tools for collecting and reporting sydar p2p node metrics"
+rust-version.workspace = true
+version.workspace = true
+authors.workspace = true
+license.workspace = true
+edition.workspace = true
+include.workspace = true
+repository.workspace = true
+
+[dependencies]
+async-trait.workspace = true
+borsh.workspace = true
+futures.workspace = true
+sydar-core.workspace = true
+sydar-rpc-core.workspace = true
+separator.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+workflow-core.workspace = true
+workflow-log.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+wasm-pack build --target web --out-name sydar-rpc --out-dir web/sydar-rpc --features wasm32-sdk

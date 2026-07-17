@@ -1,0 +1,89 @@
+#!/bin/bash
+# This script builds the Rusty sydar WASM32 SDK release.
+
+# make the script fail for any failed command
+set -e
+
+# Workaround for Rust 1.87.0
+# https://github.com/rust-lang/rust/issues/141048
+export RUSTFLAGS=-Ctarget-cpu=mvp
+
+rm -rf release/*
+rm -rf web/*
+rm -rf nodejs/*
+rm -rf docs/*
+rm -rf examples/nodejs/typescript/lib
+
+mkdir -p release/sydar-wasm32-sdk/web
+mkdir -p release/sydar-wasm32-sdk/nodejs
+mkdir -p release/sydar-wasm32-sdk/docs
+
+# pushd .
+# cd ../rpc/wrpc/wasm
+# wasm-pack build --target web --out-name sydar-rpc --out-dir web/sydar-rpc --features wasm32-sdk $@
+# popd
+
+wasm-pack build --weak-refs --target web --out-name sydar --out-dir web/sydar-keygen --features wasm32-keygen $@
+wasm-pack build --weak-refs --dev --target web --out-name sydar --out-dir web/sydar-keygen-dev --features wasm32-keygen $@
+
+wasm-pack build --weak-refs --target web --out-name sydar --out-dir web/sydar-rpc --features wasm32-rpc $@
+wasm-pack build --weak-refs --dev --target web --out-name sydar --out-dir web/sydar-rpc-dev --features wasm32-rpc $@
+
+wasm-pack build --weak-refs --target web --out-name sydar --out-dir web/sydar-core --features wasm32-core $@
+wasm-pack build --weak-refs --dev --target web --out-name sydar --out-dir web/sydar-core-dev --features wasm32-core $@
+
+wasm-pack build --weak-refs --target web --out-name sydar --out-dir web/sydar --features wasm32-sdk $@
+wasm-pack build --weak-refs --dev --target web --out-name sydar --out-dir web/sydar-dev --features wasm32-sdk $@
+
+wasm-pack build --weak-refs --target nodejs --out-name sydar --out-dir nodejs/sydar --features wasm32-sdk $@
+wasm-pack build --weak-refs --dev --target nodejs --out-name sydar --out-dir nodejs/sydar-dev --features wasm32-sdk $@
+
+# wasm-pack build --target web --dev --out-name sydar --out-dir build/docs/sydar --features wasm32-sdk $@
+typedoc --name "sydar WASM32 SDK - Key Generation" --sourceLinkExternal --readme ./README.md --options ./build/docs/ --out docs/sydar-keygen ./build/docs/sydar-keygen.ts
+typedoc --name "sydar WASM32 SDK - RPC" --sourceLinkExternal --readme ./README.md --options ./build/docs/ --out docs/sydar-rpc ./build/docs/sydar-rpc.ts
+typedoc --name "sydar WASM32 SDK - Core" --sourceLinkExternal --readme ./README.md --options ./build/docs/ --out docs/sydar-core ./build/docs/sydar-core.ts
+typedoc --name "sydar WASM32 SDK" --sourceLinkExternal --readme ./README.md --options ./build/docs/ --out docs/sydar ./build/docs/sydar.ts
+
+# cp -r ../rpc/wrpc/wasm/web/sydar-rpc release/sydar-wasm32-sdk/web/sydar-rpc
+cp -r web/sydar-keygen release/sydar-wasm32-sdk/web/sydar-keygen
+cp -r web/sydar-keygen-dev release/sydar-wasm32-sdk/web/sydar-keygen-dev
+
+cp -r web/sydar-rpc release/sydar-wasm32-sdk/web/sydar-rpc
+cp -r web/sydar-rpc-dev release/sydar-wasm32-sdk/web/sydar-rpc-dev
+
+cp -r web/sydar-core release/sydar-wasm32-sdk/web/sydar-core
+cp -r web/sydar-core-dev release/sydar-wasm32-sdk/web/sydar-core-dev
+
+cp -r web/sydar release/sydar-wasm32-sdk/web/sydar
+cp -r web/sydar-dev release/sydar-wasm32-sdk/web/sydar-dev
+
+cp -r nodejs/sydar release/sydar-wasm32-sdk/nodejs/sydar
+cp -r nodejs/sydar-dev release/sydar-wasm32-sdk/nodejs/sydar-dev
+
+cp -r docs/sydar-keygen release/sydar-wasm32-sdk/docs/sydar-keygen
+cp -r docs/sydar-rpc release/sydar-wasm32-sdk/docs/sydar-rpc
+cp -r docs/sydar-core release/sydar-wasm32-sdk/docs/sydar-core
+cp -r docs/sydar release/sydar-wasm32-sdk/docs/sydar
+
+mkdir -p release/sydar-wasm32-sdk/examples/data
+cp -r examples/data/.gitignore release/sydar-wasm32-sdk/examples/data/.gitignore
+cp -r examples/nodejs release/sydar-wasm32-sdk/examples/
+cp -r examples/web release/sydar-wasm32-sdk/examples/
+cp -r examples/init.js release/sydar-wasm32-sdk/examples/
+cp -r examples/jsconfig.json release/sydar-wasm32-sdk/examples/
+cp -r examples/package.json release/sydar-wasm32-sdk/examples/
+
+pushd .
+cd release/sydar-wasm32-sdk/examples
+npm install
+popd
+
+# tsc release/sydar-wasm32-sdk/examples/nodejs/typescript/
+
+cp index.html release/sydar-wasm32-sdk/index.html
+cp README.md release/sydar-wasm32-sdk/README.md
+cp CHANGELOG.md release/sydar-wasm32-sdk/CHANGELOG.md
+cp LICENSE release/sydar-wasm32-sdk/LICENSE
+
+node build/package-sizes.js
+cp package-sizes.js release/sydar-wasm32-sdk/package-sizes.js

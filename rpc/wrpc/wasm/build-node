@@ -1,0 +1,3 @@
+#!/bin/bash
+
+wasm-pack build --target nodejs --out-name sydar-rpc --out-dir nodejs/sydar-rpc --features wasm32-sdk

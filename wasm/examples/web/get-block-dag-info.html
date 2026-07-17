@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./resources/style.css">
+        <script type="module">
+            import { log, stringify, currentNetwork } from './resources/utils.js';
+
+            import * as sydar from '../../web/sydar-rpc/sydar.js';
+            let { Resolver, RpcClient, Encoding } = sydar;
+
+            (async () => {
+                await sydar.default('../../web/sydar-rpc/sydar_bg.wasm');
+
+                let networkId = currentNetwork();
+                log(`Connecting to sydar network...`);
+                log(`Selected network is ${networkId}...`);
+                
+                const rpc = new RpcClient({
+                    resolver : new Resolver(),
+                    networkId,
+                });
+
+                await rpc.connect();
+                log("Connected to", rpc.url);
+                
+                log("GetsydarDagInfo request...");
+                const info = await rpc.getsydarDagInfo();
+                log("GetsydarDagInfo response:", info);
+
+                log("Disconnected...");
+                await rpc.disconnect();
+            })();
+
+        </script>
+    </head>
+    <body></body>
+</html>

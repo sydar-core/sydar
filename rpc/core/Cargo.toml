@@ -1,0 +1,61 @@
+[package]
+name = "sydar-rpc-core"
+description = "sydar RPC core"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[features]
+wasm32-sdk = [
+    "sydar-consensus-client/wasm32-sdk",
+    "sydar-consensus-wasm/wasm32-sdk"
+]
+
+[dependencies]
+sydar-addresses.workspace = true
+sydar-consensus-core.workspace = true
+sydar-consensus-client.workspace = true
+sydar-consensus-notify.workspace = true
+sydar-consensus-wasm.workspace = true
+sydar-core.workspace = true
+sydar-hashes.workspace = true
+sydar-index-core.workspace = true
+sydar-math.workspace = true
+sydar-mining-errors.workspace = true
+sydar-notify.workspace = true
+sydar-txscript.workspace = true
+sydar-utils.workspace = true
+sydar-rpc-macros.workspace = true
+
+async-channel.workspace = true
+async-trait.workspace = true
+borsh.workspace = true
+cfg-if.workspace = true
+derive_more.workspace = true
+downcast.workspace = true
+faster-hex.workspace = true
+hex.workspace = true
+js-sys.workspace = true
+log.workspace = true
+paste.workspace = true
+rand.workspace = true
+serde-wasm-bindgen.workspace = true
+serde.workspace = true
+serde_nested_with.workspace = true
+smallvec.workspace = true
+thiserror.workspace = true
+uuid.workspace = true
+wasm-bindgen.workspace = true
+workflow-core.workspace = true
+workflow-serializer.workspace = true
+workflow-wasm.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true
+
+[lints]
+workspace = true

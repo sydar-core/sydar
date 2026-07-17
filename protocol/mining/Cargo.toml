@@ -1,0 +1,26 @@
+[package]
+name = "sydar-p2p-mining"
+description = "sydar p2p mining"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+sydar-core.workspace = true
+sydar-consensus-core.workspace = true
+sydar-consensusmanager.workspace = true
+sydar-mining-errors.workspace = true
+sydar-hashes.workspace = true
+sydar-math.workspace = true
+sydar-p2p-lib.workspace = true
+sydar-utils.workspace = true
+sydar-utils-tower.workspace = true
+log.workspace = true
+tokio.workspace = true
+
+[lints]
+workspace = true

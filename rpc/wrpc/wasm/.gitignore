@@ -1,0 +1,6 @@
+/target
+/Cargo.lock
+/web/sydar-rpc
+/nodejs/sydar-rpc
+/nodejs/node_modules
+/nodejs/package-lock.json

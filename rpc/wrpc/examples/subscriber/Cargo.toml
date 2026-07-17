@@ -1,0 +1,25 @@
+[package]
+name = "sydar-wrpc-example-subscriber"
+description = "sydar wRPC subscription example"
+publish = false
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+futures.workspace = true
+sydar-consensus-core.workspace = true
+sydar-rpc-core.workspace = true
+sydar-wrpc-client.workspace = true
+sydar-notify.workspace = true
+tokio.workspace = true
+workflow-core.workspace = true
+workflow-log.workspace = true
+ctrlc.workspace = true
+
+[lints]
+workspace = true

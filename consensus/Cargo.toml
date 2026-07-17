@@ -1,0 +1,74 @@
+[package]
+name = "sydar-consensus"
+description = "sydar consensus library"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+arc-swap.workspace = true
+async-channel.workspace = true
+bincode.workspace = true
+crossbeam-channel.workspace = true
+faster-hex.workspace = true
+futures-util.workspace = true
+indexmap.workspace = true
+itertools.workspace = true
+sydar-addresses.workspace = true
+sydar-consensus-core.workspace = true
+sydar-dilithium.workspace = true
+sha2.workspace = true
+sydar-consensus-notify.workspace = true
+sydar-consensusmanager.workspace = true
+sydar-core.workspace = true
+sydar-database.workspace = true
+sydar-hashes.workspace = true
+sydar-math.workspace = true
+sydar-merkle.workspace = true
+sydar-muhash.workspace = true
+sydar-notify.workspace = true
+sydar-pow.workspace = true
+sydar-txscript.workspace = true
+sydar-txscript-errors.workspace = true
+sydar-utils.workspace = true
+log.workspace = true
+once_cell.workspace = true
+parking_lot.workspace = true
+rayon.workspace = true
+rocksdb.workspace = true
+serde.workspace = true
+smallvec.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+
+rand = { workspace = true, features = ["small_rng"] }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
+tokio = { workspace = true, features = ["rt", "macros"] }
+
+[dev-dependencies]
+criterion.workspace = true
+serde_json.workspace = true
+flate2.workspace = true
+rand_distr.workspace = true
+sydar-txscript-errors.workspace = true
+sydar-addresses.workspace = true
+
+[[bench]]
+name = "parallel_muhash"
+harness = false
+
+[[bench]]
+name = "check_scripts"
+harness = false
+
+[features]
+html_reports = []
+devnet-prealloc = ["sydar-consensus-core/devnet-prealloc"]
+
+[lints]
+workspace = true

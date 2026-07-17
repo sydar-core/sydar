@@ -1,0 +1,32 @@
+[package]
+name = "sydar-utxoindex"
+description = "sydar UTXO index"
+rust-version.workspace = true
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+futures.workspace = true
+sydar-consensus-core.workspace = true
+sydar-consensusmanager.workspace = true
+sydar-core.workspace = true
+sydar-database.workspace = true
+sydar-hashes.workspace = true
+sydar-index-core.workspace = true
+sydar-utils.workspace = true
+log.workspace = true
+parking_lot.workspace = true
+rocksdb.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+sydar-consensus.workspace = true
+rand = { workspace = true, features = ["small_rng"] }
+
+[lints]
+workspace = true

@@ -1,0 +1,42 @@
+[package]
+name = "sydar-consensus-client"
+description = "sydar consensus client data structures"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+include.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[features]
+wasm32-sdk = []
+wasm32-types = []
+
+[dependencies]
+sydar-addresses.workspace = true
+sydar-consensus-core.workspace = true
+sydar-hashes.workspace = true
+sydar-math.workspace = true
+sydar-txscript.workspace = true
+sydar-utils.workspace = true
+sydar-wasm-core.workspace = true
+sha2.workspace = true
+ahash.workspace = true
+cfg-if.workspace = true
+faster-hex.workspace = true
+hex.workspace = true
+js-sys.workspace = true
+rand.workspace = true
+sydar-dilithium.workspace = true
+serde_json.workspace = true
+serde-wasm-bindgen.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+wasm-bindgen.workspace = true
+itertools.workspace = true
+
+workflow-wasm.workspace = true
+workflow-log.workspace = true
+
+[lints]
+workspace = true
